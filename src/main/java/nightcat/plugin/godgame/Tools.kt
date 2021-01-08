@@ -18,13 +18,13 @@ object Tools {
 
     fun addIntegral(player: Player, integral: Any, value: Int) {
         val yaml = LocalPlayer.get(player)
-        val info = yaml.get("Wizard.list.$integral", 0) as? Int ?: 0
+        val info = yaml.get("Wizard.list.$integral", 0) as? Int ?: return
         yaml["GoodGame.list.$integral"] = info + value
     }
 
     fun takeIntegral(player: Player, integral: Any, value: Int) {
         val yaml = LocalPlayer.get(player)
-        val info = yaml.get("Wizard.list.$integral", 0) as? Int ?: 0
+        val info = yaml.get("Wizard.list.$integral", 0) as? Int ?: return
         yaml["GoodGame.list.$integral"] = info - value
     }
 
