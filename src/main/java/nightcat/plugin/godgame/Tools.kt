@@ -6,7 +6,7 @@ import org.bukkit.entity.Player
 
 object Tools {
 
-    fun getIntegral(player: Player?, integral: Any, def: Any): Any {
+    fun getIntegral(player: Player, integral: Any, def: Any): Any {
         val yaml = LocalPlayer.get(player)
         return yaml["GoodGame.list.$integral", def] ?: def
     }
