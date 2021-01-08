@@ -46,6 +46,7 @@ CapturedGiveing:
 /karma take/add [玩家] [变量] [数值] -- 操作玩家变量
 /karma enable [玩家] -- 进入状态
 /karma enableAll  -- 让全服玩家进入状态
+/karma enableWorld [世界]  -- 让某世界玩家进入状态
 
 变量: 
 Character & Language

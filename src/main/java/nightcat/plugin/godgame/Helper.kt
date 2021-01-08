@@ -28,43 +28,17 @@ interface Helper {
 
     fun CommandSender.info(value: String) {
         this.sendMessage("$title${value.replace("&", "§")}")
-        if (this is Player && !Global.cd.isCooldown(this.name)) {
-            this.playSound(this.location, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 2f)
-        }
     }
 
     fun CommandSender.error(value: String) {
         this.sendMessage("§8[§c $title §8] §7${value.replace("&", "§")}")
-        if (this is Player && !Global.cd.isCooldown(this.name)) {
-            this.playSound(this.location, Sound.ENTITY_VILLAGER_NO, 1f, 1f)
-        }
     }
 
     fun Player.info(value: String) {
         this.sendMessage("$title${value.replace("&", "§")}")
-        if (!Global.cd.isCooldown(this.name)) {
-            this.playSound(this.location, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 2f)
-        }
     }
 
     fun Player.error(value: String) {
         this.sendMessage("§8[§c $title §8] §7${value.replace("&", "§")}")
-        if (!Global.cd.isCooldown(this.name)) {
-            this.playSound(this.location, Sound.ENTITY_VILLAGER_NO, 1f, 1f)
-        }
-    }
-
-    fun Block.display() {
-        world.playEffect(location, Effect.STEP_SOUND, type)
-    }
-
-    fun String.unColored(): String {
-        return TLocale.Translate.setUncolored(this)
-    }
-
-    object Global {
-
-        @TInject
-        val cd = Cooldown("command.sound", 50)
     }
 }

@@ -11,7 +11,7 @@ import org.bukkit.permissions.PermissionDefault
 class GodGameCommand : BaseMainCommand(), Helper {
 
     override val title: String
-        get() = GodGame.settings.getStringColored("Title","GoodGame")
+        get() = GodGame.settings.getStringColored("Title", "GoodGame")
 
     @SubCommand(description = "设置变量")
     var set: BaseSubCommand = object : BaseSubCommand() {
@@ -107,7 +107,7 @@ class GodGameCommand : BaseMainCommand(), Helper {
             Tools.clockMap[player ?: return] = true
             val time = GodGame.settings.getInt("CapturedTime", 200)
             Bukkit.getScheduler().runTaskLater(GodGame.plugin, Runnable {
-                if (Tools.clockMap[player] != null){
+                if (Tools.clockMap[player] != null) {
                     Tools.clockMap.remove(player)
                 }
             }, time.toLong())
@@ -122,7 +122,27 @@ class GodGameCommand : BaseMainCommand(), Helper {
                 Tools.clockMap[player ?: return] = true
                 val time = GodGame.settings.getInt("CapturedTime", 200)
                 Bukkit.getScheduler().runTaskLater(GodGame.plugin, Runnable {
-                    if (Tools.clockMap[player] != null){
+                    if (Tools.clockMap[player] != null) {
+                        Tools.clockMap.remove(player)
+                    }
+                }, time.toLong())
+            }
+        }
+    }
+
+    @SubCommand(description = "enable世界内")
+    val enableWorld: BaseSubCommand = object : BaseSubCommand() {
+        override fun getArguments(): Array<Argument> {
+            return arrayOf(Argument("世界名"))
+        }
+        override fun onCommand(sender: CommandSender, command: Command, s: String, args: Array<String>) {
+
+            val world = Bukkit.getWorld(args[0]) ?: return
+            world.players.forEach { player ->
+                Tools.clockMap[player ?: return] = true
+                val time = GodGame.settings.getInt("CapturedTime", 200)
+                Bukkit.getScheduler().runTaskLater(GodGame.plugin, Runnable {
+                    if (Tools.clockMap[player] != null) {
                         Tools.clockMap.remove(player)
                     }
                 }, time.toLong())

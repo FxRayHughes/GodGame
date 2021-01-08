@@ -1,7 +1,7 @@
 package nightcat.plugin.godgame
 
-import io.izzel.taboolib.module.db.local.Local
 import io.izzel.taboolib.module.db.local.LocalPlayer
+import org.bukkit.World
 import org.bukkit.entity.Player
 
 object Tools {
