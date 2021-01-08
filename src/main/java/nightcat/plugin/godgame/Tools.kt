@@ -6,6 +6,8 @@ import org.bukkit.entity.Player
 
 object Tools {
 
+    val clockMap = mutableMapOf<Player,Boolean>()
+
     fun getIntegral(player: Player, integral: Any, def: Any): Any {
         val yaml = LocalPlayer.get(player)
         return yaml["GoodGame.list.$integral", def] ?: def
@@ -27,5 +29,6 @@ object Tools {
         val info = yaml.get("Wizard.list.$integral", 0) as? Int ?: return
         yaml["GoodGame.list.$integral"] = info - value
     }
+
 
 }

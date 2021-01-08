@@ -4,6 +4,7 @@ import io.izzel.taboolib.module.command.base.*
 import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
+import org.bukkit.entity.Player
 import org.bukkit.permissions.PermissionDefault
 
 @BaseCommand(name = "karma", permissionDefault = PermissionDefault.OP)
@@ -22,6 +23,11 @@ class GodGameCommand : BaseMainCommand(),Helper {
             val player = Bukkit.getPlayerExact(args[0])
             if (player == null) {
                 sender.error("§7目标 §f${args[0]} §7离线.")
+                return
+            }
+            val compare = listOf("Character", "Language")
+            if(!compare.contains(args[1])){
+                sender.error("&7您输入的参数不符合. 请输入&f‘Character’&7 或 &f‘Language’ &7.")
                 return
             }
             Tools.setIntegral(player,args[1],args[2])
@@ -44,6 +50,11 @@ class GodGameCommand : BaseMainCommand(),Helper {
                 sender.error("§7目标 §f${args[0]} §7离线.")
                 return
             }
+            val compare = listOf("Character", "Language")
+            if(!compare.contains(args[1])){
+                sender.error("&7您输入的参数不符合. 请输入&f‘Character’&7 或 &f‘Language’ &7.")
+                return
+            }
             sender.info("&7目标的 &f${args[1]} &7值为 &f${Tools.getIntegral(player,args[1],"不存在")}")
             //sender.info("&7目标的 &f${args[1]} &7设置为 &f${args[2]}.")
         }
@@ -64,8 +75,31 @@ class GodGameCommand : BaseMainCommand(),Helper {
                 sender.error("§7目标 §f${args[0]} §7离线.")
                 return
             }
+            val compare = listOf("Character", "Language")
+            if(!compare.contains(args[1])){
+                sender.error("&7您输入的参数不符合. 请输入&f‘Character’&7 或 &f‘Language’ &7.")
+                return
+            }
             //sender.info("&7目标的 &f${args[1]} &7值为 &f${Tools.getIntegral(player,args[1],"不存在")}")
             Tools.takeIntegral(player,args[1],args[2].toInt())
+        }
+    }
+
+    @SubCommand(description = "enable")
+    val enable: BaseSubCommand = object : BaseSubCommand(){
+        override fun getArguments(): Array<Argument> {
+            return arrayOf(
+                    Argument("玩家")
+            )
+        }
+
+        override fun onCommand(sender: CommandSender, command: Command, s: String, args: Array<String>) {
+            val player = Bukkit.getPlayer(args[0])
+            if(player == null){
+                sender.error("&7目标 &f${args[0]} &7离线.")
+            }
+            Tools.clockMap.put(player ?: return,true)
+
         }
     }
 }

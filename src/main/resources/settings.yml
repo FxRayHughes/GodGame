@@ -1,0 +1,18 @@
+CapturedWorld:
+  - '(?i)gg'
+  - '(?i)good game'
+
+CapturedTime: 200
+CapturedGiveing:
+  vip:
+    perms: 'vip'
+    giving: 10
+    message:
+      Chinese: '&d+10 Karma'
+      English: '&d+10 Karma'
+  default:
+    perms: 'none'
+    giving: 5
+    message:
+      Chinese: '&d+5 Karma'
+      English: '&d+5 Karma'
