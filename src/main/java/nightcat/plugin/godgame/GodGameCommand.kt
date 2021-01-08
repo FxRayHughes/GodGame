@@ -13,7 +13,7 @@ class GodGameCommand : BaseMainCommand(),Helper {
     var set: BaseSubCommand = object : BaseSubCommand() {
         override fun getArguments(): Array<Argument> {
             return arrayOf(
-                Argument("目标"),
+                Argument("玩家"),
                 Argument("变量类型") { listOf("Character", "Language") },
                 Argument("数量")
             )
