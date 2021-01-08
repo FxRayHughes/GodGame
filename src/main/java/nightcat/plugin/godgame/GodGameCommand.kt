@@ -66,7 +66,6 @@ class GodGameCommand : BaseMainCommand(),Helper {
             }
             //sender.info("&7目标的 &f${args[1]} &7值为 &f${Tools.getIntegral(player,args[1],"不存在")}")
             Tools.takeIntegral(player,args[1],args[2].toInt())
-
         }
     }
 }
