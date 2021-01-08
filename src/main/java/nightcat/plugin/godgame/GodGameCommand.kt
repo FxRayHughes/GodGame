@@ -113,4 +113,20 @@ class GodGameCommand : BaseMainCommand(), Helper {
             }, time.toLong())
         }
     }
+
+    @SubCommand(description = "enable全体玩家")
+    val enableALL: BaseSubCommand = object : BaseSubCommand() {
+
+        override fun onCommand(sender: CommandSender, command: Command, s: String, args: Array<String>) {
+            Bukkit.getOnlinePlayers().forEach { player ->
+                Tools.clockMap[player ?: return] = true
+                val time = GodGame.settings.getInt("CapturedTime", 200)
+                Bukkit.getScheduler().runTaskLater(GodGame.plugin, Runnable {
+                    if (Tools.clockMap[player] != null){
+                        Tools.clockMap.remove(player)
+                    }
+                }, time.toLong())
+            }
+        }
+    }
 }
