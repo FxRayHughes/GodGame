@@ -10,6 +10,9 @@ import org.bukkit.permissions.PermissionDefault
 @BaseCommand(name = "karma", permissionDefault = PermissionDefault.OP)
 class GodGameCommand : BaseMainCommand(), Helper {
 
+    override val title: String
+        get() = GodGame.settings.getStringColored("Title","GoodGame")
+
     @SubCommand(description = "设置变量")
     var set: BaseSubCommand = object : BaseSubCommand() {
         override fun getArguments(): Array<Argument> {
